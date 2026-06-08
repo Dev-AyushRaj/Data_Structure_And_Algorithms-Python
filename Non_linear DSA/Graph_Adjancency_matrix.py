@@ -6,13 +6,13 @@ class Graph:
             row =[0]*vertex_count
             self.adj_matrix.append(row)
 
-    def is_valid_vertex(self,vertex1,vertex2):
-        if 0 <= vertex1 < self.vertex_count and 0 <= vertex2 < self.vertex_count:
+    def is_valid_vertex(self,vertex):
+        if 0 <= vertex < self.vertex_count:
             return True
         return False   
     
     def add_edge(self,vertex1,vertex2, weight = 1):
-        if self.is_valid_vertex(vertex1,vertex2):
+        if self.is_valid_vertex(vertex1) and self.is_valid_vertex(vertex2) :
             self.adj_matrix[vertex1][vertex2] = weight
             self.adj_matrix[vertex2][vertex1] = weight
             return
@@ -24,7 +24,7 @@ class Graph:
               return
     
     def has_edge(self,vertex1, vertex2):
-        if self.is_valid_vertex(vertex1,vertex2):
+        if self.is_valid_vertex(vertex1) and self.is_valid_vertex(vertex2) :
            if self.adj_matrix[vertex1][vertex2] != 0:
             return True
         return False
@@ -35,7 +35,7 @@ class Graph:
         return
     
     def get_adjacent_vertices(self,vertex):
-        if 0 <= vertex < self.vertex_count:
+        if self.is_valid_vertex(vertex):
             index = 0
             vertices = []
             for val in self.adj_matrix[vertex]:
