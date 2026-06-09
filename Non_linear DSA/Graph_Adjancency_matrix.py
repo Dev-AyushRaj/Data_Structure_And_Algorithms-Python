@@ -25,8 +25,7 @@ class Graph:
     
     def has_edge(self,vertex1, vertex2):
         if self.is_valid_vertex(vertex1) and self.is_valid_vertex(vertex2) :
-           if self.adj_matrix[vertex1][vertex2] != 0:
-            return True
+            return self.adj_matrix[vertex1][vertex2] != 0          
         return False
     
     def print_adj_matrix(self):
@@ -43,6 +42,10 @@ class Graph:
                     vertices.append(index)
                 index += 1
             return vertices
+        
+    def print_matrix(self):
+        for row in self.adj_matrix:
+            print(" ".join(map(str,row)))
                 
 
 
@@ -55,3 +58,4 @@ g1.remove_edge(2,3)
 print(g1.has_edge(1,2))
 print(g1.get_adjacent_vertices(1))
 g1.print_adj_matrix()
+g1.print_matrix()
