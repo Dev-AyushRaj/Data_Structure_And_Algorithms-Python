@@ -1,17 +1,3 @@
-class Queue:
-    def __init__(self):
-        self.queue = []
-    
-    def is_empty(self):
-        return len(self.queue) == 0
-
-    def add_vertex(self,vertex):
-        self.queue.append(vertex)
-        return
-    
-    def take_out_vertex(self):
-        return self.queue.pop(0)
-
 class Graph:
     def __init__(self, vertex_count):
         self.vertex_count = vertex_count
@@ -32,30 +18,26 @@ class Graph:
         if self.valid_vertex(vertex1) and self.valid_vertex(vertex2):
             return  any(vertex2 == v for v,w in self.dict_adj_list[vertex1])
         return False  
-
+    
     def print_adj_list(self):
         for key, value in self.dict_adj_list.items():
             print(f"V{key} : {value}")
-        return    
+        return
 
-    def BFS(self,start):
-        list = Queue()
+    def DFS(self,start):
         visit_list = [False]*self.vertex_count
-        list.add_vertex(start)
-        visit_list[start] = True
+        self.rDFS(start,visit_list)
 
-        while not list.is_empty():
-            vertex = list.take_out_vertex()
-            print(vertex, end=" ")
-            for adj_vertex,w in self.dict_adj_list[vertex]:
-                if not visit_list[adj_vertex]:
-                    list.add_vertex(adj_vertex)
-                    visit_list[adj_vertex] = True
-        
+    def rDFS(self,vertex,visit_list):
+        visit_list[vertex] = True
+        print(vertex, end= " ")
+        for adj_vertex,w in self.dict_adj_list[vertex]:
+            if not visit_list[adj_vertex]:               
+                self.rDFS(adj_vertex,visit_list)                
+        return
     
-                   
+    
 
-    
 
 g1 = Graph(4)
 g1.add_edge(0,2,5)
@@ -64,4 +46,6 @@ g1.add_edge(1,2,5)
 g1.add_edge(2,3,5)
 g1.add_edge(0,3,5)
 g1.print_adj_list()
-g1.BFS(1)
+g1.DFS(1)
+
+                
