@@ -1,4 +1,4 @@
-from singly_linked_list import*
+from Singly_linked_list import*
 
 class Stack(SLL):
     def is_empty(self):
