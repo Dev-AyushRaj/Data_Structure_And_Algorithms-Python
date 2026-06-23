@@ -28,3 +28,18 @@ class Bubble_sort:
 s1 = Bubble_sort([24,58,11,67,92,43])
 s1.sorting()
 print(s1.num)
+
+#Modified bubble sort through loops
+def bubble_sort(values):
+    for r in range(1,len(values)-1):
+        swap_flag = False
+        for i in range(len(values)-r):
+            if values[i] > values[i+1]:
+                values[i],values[i+1] = values[i+1],values[i]
+                swap_flag = True
+        if not swap_flag:
+            break
+
+l = [24,58,11,67,92,43]
+bubble_sort(l)
+print(l)
